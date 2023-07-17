@@ -4,7 +4,7 @@
 
 ## 비교
 ### 프로세스
-<p align="center"><img src="./images/process_struct.jpg" width="600"></p>
+<p align="center"><img src="../images/process_struct.jpg" width="600"></p>
 
 - __Code__ : 코드 자체를 구성하는 메모리 영역(프로그램 명령)
 - __Data__ : 전역변수, 정적변수, 배열 등
