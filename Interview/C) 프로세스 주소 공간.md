@@ -3,7 +3,7 @@
 - 프로세스가 메모리를 할당받으면, 자신만의 방법으로 메모리를 관리하기 위해 이 공간들을 어떠한 구조로 관리하는데, 이를 __프로세스 주소 공간__ 이라고 부른다.
 
 ## 구조
-<p align="center"><img src="../images/os_process_address_space.png" width="500"></p>
+<p align="center"><img src="../images/os_process_address_space.png" width="700"></p>
 
 - 프로세스의 주소 공간은 대략적으로 다음과 같이 생겼으며, 각각의 구역을 살펴보면 다음과 같다.
 
@@ -57,7 +57,7 @@ ulimit -s
 - 이 명령어를 이용하면 Stack 영역의 최대 크기를 수정할 수도 있지만, 현재 최대 크기도 확인할 수 있는데, 딱 8MB 라고 나올 것이다.
 - Stack 영역과 Heap 영역은 같은 공간을 공유하는게 아니었나? 왜 필요한 크기가 다를까?
 
-<p align="center"><img src="../images/os_heap_stack.png" width="500"></p>
+<p align="center"><img src="../images/os_heap_stack.png" width="800"></p>
 
 - 위 그림은 Java에서의 Stack 영역과 Heap 영역을 나타낸다. 잘 살펴보면, Stack 영역에 등장하는 각각의 변수들은 Heap 영역에 위치한 실제 Object의 참조를 갖고 있는 것을 볼 수 있다.
   - 즉, 실제 객체는 Heap 영역에서 관리되기 때문에 Stack 영역의 크기는 생각보다 클 필요가 없다는 것을 알 수 있다.
@@ -69,7 +69,7 @@ ulimit -s
 - 프로세스가 자원을 할당 받지만, 스레드도 자신만의 자원을 갖고 있어야 한다. 따라서, 스레드도 자신만의 주소 공간을 갖고 있다.
 - 하지만, 약간의 차이가 있다.
 
-<p align="center"><img src="../images/os_multi_thread.png" width="500"></p>
+<p align="center"><img src="../images/os_multi_thread.png" width="700"></p>
 
 - 다음 그림과 같이, 실제로 각 스레드가 갖고 있는 것은 Stack 영역밖에 없다!
   - 즉, 나머지 공간은 프로세스의 값을 함께 쓰고 있고, 즉 다른 스레드와 공유한다고 볼 수 있다.
