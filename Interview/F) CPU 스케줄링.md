@@ -13,7 +13,7 @@
 - 비선점 (nonpreemptive) : 프로세스 종료 or I/O 등의 이벤트가 있을 때까지 실행 보장 (처리시간 예측 용이함)
 
 ## 3. 프로세스 상태
-<p align="center"><img src="../images/os_process_state.png" width="600"></p>
+<p align="center"><img src="../images/os_process_state.jpeg" width="600"></p>
 
 - 선점 스케줄링 : Interrupt, I/O or Event Completion, I/O or Event Wait, Exit
 - 비선점 스케줄링 : I/O or Event Wait, Exit
