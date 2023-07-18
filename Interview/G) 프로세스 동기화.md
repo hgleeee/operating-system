@@ -61,7 +61,7 @@
 - 두 프로세스가 flag = true를 수행하고 나면 두 프로세스 모두 무한히 Critical Section에 진입하지 못하고 기다리는 상황이 발생하게 된다.
 
 ### [Algorithm 3 (Peterson's Algorithm)]
-<p align="center"><img src="../images/os_sync_algorithm_3.png" width="600"></p>
+<p align="center"><img src="../images/os_sync_algorithm_3.png" width="400"></p>
 
 - Peterson's Algorithm은 이전의 알고리즘 1과 2를 합쳐놓은 개념이다. turn 변수와 flag 변수를 동시에 사용한다. 
 - Pi 프로세스에 대해서, Pi는 flag[i] = true로 바꾸면서 Critical Section에 진입하려고 한다. 그리고 turn = j로 바꿔주면서 상대방이 들어가게 한다.
@@ -80,7 +80,7 @@
 - 이전까지의 알고리즘들은 데이터를 읽고 쓰는 것을 하나의 명령어로 처리할 수 없기 때문에 복잡해졌다.
 - 만약 메모리에서 데이터를 읽으면서 쓰는 것까지 하나의 명령어로 동시에 수행이 가능하다면 코드가 훨씬 간결해지고, 이는 Test_and_Set을 이용하여 아래와 같이 구현된다. 
 
-<p align="center"><img src="../images/os_sync_hardware.png" width="600"></p>
+<p align="center"><img src="../images/os_sync_hardware.png" width="500"></p>
 
 - 하지만 이러한 하드웨어적인 명령어는 bounded waiting 조건을 만족하지 못하는 단점이 있다.
 - 이 문제를 해결하기 위해서 waiting array라는 배열을 추가로 사용할 수 있는데, 자세한 설명은 생략하겠다.
@@ -90,7 +90,7 @@
 - Mutex locks은 lock이 하나만 존재할 수 있는 locking 메커니즘을 따른다.
   - 즉, 이미 하나의 프로세스가 Critical Section에서 작업 중이면 다른 프로세스들은 Critical Section에 들어갈 수 없도록 한다. 
   - Lock을 걸고 푸는 동작은 하드웨어 방식처럼 atomic 하게 수행된다.
-<p align="center"><img src="../images/os_mutex.png" width="600"></p>
+<p align="center"><img src="../images/os_mutex.png" width="500"></p>
 
 - 이러한 방식은 앞의 Peterson's Algorithm 설명에서도 언급했듯이, Busy Waiting의 단점이 있다.
   - Critical Section에 프로세스가 존재할 때, 다른 프로세스들은 Critical Section에 계속해서 진입하려고 시도하기 때문에 CPU를 낭비하게 된다.
@@ -105,7 +105,7 @@
 - 또 세마포어 변수는 오직 두 개의 atomic한 연산을 통해서 접근할 수 있다.
   - 한 프로세스가 세마포어 변수를 수정할 때 다른 프로세스가 동시에 같은 세마포어 변수를 수정할 수 없다. 
 
-<p align="center"><img src="../images/os_semaphore_1.png" width="600"></p>
+<p align="center"><img src="../images/os_semaphore_1.png" width="400"></p>
 
 - P(S)는 공유 데이터를 획득하는 연산이고, V(S)는 반납하는 연산이다. 
 
@@ -114,17 +114,17 @@
 - 2) Binary Semaphore : 정수 값이 오직 0 또는 1이다. Mutex lock과 동일한 역할을 갖는다. (Mutex lock과의 차이점)
 
 ### 세마포어의 사용
-<p align="center"><img src="../images/os_semaphore_2.png" width="600"></p>
+<p align="center"><img src="../images/os_semaphore_2.png" width="400"></p>
 
 - 위 방식은 Busy Waiting이 발생하므로 비효율적이다. 따라서 Block & Wakeup 방식을 사용한다. 
 - Block & Wakeup 방식은 Critical Section으로의 진입에 실패한 프로세스를 기다리게 하지 않고 Block 시킨 뒤 Critical Section에 자리가 나면 다시 깨워줌으로써 Busy waiting에서의 CPU 낭비 문제를 해결해준다. 
   - 일반적으로 Busy Waiting이 비효율적이지만, Critical Section이 매우 짧은 경우 Block & Wakeup의 오버헤드가 더 커질 수도 있다. 
 - Block & Wakeup 구현을 위해 세마포어를 다음과 같이 정의한다. 
-<p align="center"><img src="../images/os_semaphore_3.png" width="500"></p>
+<p align="center"><img src="../images/os_semaphore_3.png" width="400"></p>
 
 - value는 세마포어 변수를 의미하고, L은 block 된 프로세스들이 기다리는 Queue다. 따라서 wait와 signal 함수도 아래와 같이 구현된다. 
 
-<p align="center"><img src="../images/os_semaphore_3.png" width="800"></p>
+<p align="center"><img src="../images/os_semaphore_4.png" width="700"></p>
 
 - Block을 수행하면, 커널은 block을 호출한 프로세스를 suspend 시키고 해당 프로세스의 PCB를 wait queue에 넣어준다. 
 - Wakeup을 수행하면 block 된 프로세스 P를 깨운 다음, 이 프로세스의 PCB를 Ready Queue로 이동시킨다. 
@@ -159,10 +159,10 @@
 
 ### 3) Dining-Philosophers Problem
 - 5명의 철학자가 원탁에 둘러앉아있고, 젓가락도 5개가 놓여있다.
- <p align="center"><img src="../images/os_sync_problem_3.png" width="500"></p>
+ <p align="center"><img src="../images/os_sync_problem_3.png" width="300"></p>
 
 - 각 철학자는 식사를 하기를 원하고, 철학자가 식사를 하기 위해서는 양쪽 젓가락을 모두 집어야 한다. 
- <p align="center"><img src="../images/os_sync_problem_4.png" width="600"></p>
+ <p align="center"><img src="../images/os_sync_problem_4.png" width="500"></p>
 
 - 위와 같이 구현하면 이웃한 두 철학자가 동시에 먹는 경우가 없다는 것이 보장된다.
 - 하지만 이 방식은 만약 모든 철학자가 식사를 하기를 원해서 각자 왼쪽에 있는 젓가락을 들었다면, 더 이상 아무런 작업도 수행할 수 없는 Deadlock 상태에 빠져버리게 된다. 
