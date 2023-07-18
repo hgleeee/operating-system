@@ -190,26 +190,26 @@
 - 세마포어와의 가장 큰 차이점은, 모니터는 락(Lock)을 걸 필요가 없다.
   - 세마포어는 프로그래머가 직접 wait와 signal을 사용하여 Race condition을 해결해야 하지만 모니터는 자체적인 기능으로 해결할 수 있게 된다.  
 
-<p align="center"><img src="../images/os_monitor_1.png" width="700"></p>
+<p align="center"><img src="../images/os_moniter_1.png" width="700"></p>
 
 - 위 그림은 Race condition이 발생할 수 있는 경우의 예시이다. P1이 B와 C를 사용하고 있을 때 P2가 C에 접근한다면 Race condition이 발생할 수 있다. 
 - 우리는 이를 방지하기 위해 여러 알고리즘이나 세마포어 같은 도구들을 배웠고, 이를 사용하면 다음과 같이 작용한다. 
 
- <p align="center"><img src="../images/os_monitor_2.png" width="700"></p>
+ <p align="center"><img src="../images/os_moniter_2.png" width="700"></p>
 
 #### 모니터의 구조
 - 반면, 모니터는 아래와 같이 이루어져 있다.
-<p align="center"><img src="../images/os_monitor_3.png" width="700"></p>
+<p align="center"><img src="../images/os_moniter_3.png" width="700"></p>
 
 - 모니터는 공유 데이터 구조, 공유 데이터에 대한 연산을 제공하는 프로시저(Procedure), 현재 호출된 프로시저간의 동기화를 캡슐화한 모듈(module)이다. 
 - 프로세스가 공유 데이터를 사용하기 위해서는 반드시 모니터 내의 Procedure를 통해야 한다.
   - 그리고 동일한 시간엔 오직 한 프로세스나 스레드만 모니터에 들어갈 수 있다. 
 
- <p align="center"><img src="../images/os_monitor_4.png" width="800"></p>
+ <p align="center"><img src="../images/os_moniter_4.png" width="800"></p>
 
 - 모니터에 진입하려고 했지만 내부에 프로세스가 들어가 있어 진입하지 못한 프로세스들은 모니터 큐(Monitor Queue)에서 기다린다.
   - 프로세스가 모니터 내에서 기다릴 수 있게 하도록 조건 변수(Condition variable)가 사용된다. 
 - 조건 변수는 오직 wait와 signal 연산만으로 사용될 수 있다.
   - 세마포어 변수와 유사하지만 변수가 어떤 값을 가지진 않고, 자신의 큐에 프로세스를 매달아서 sleep 시키거나 큐에서 프로세스를 깨우는 역할만 한다.
 
-<p align="center"><img src="../images/os_monitor_5.png" width="500"></p>
+<p align="center"><img src="../images/os_moniter_5.png" width="500"></p>
