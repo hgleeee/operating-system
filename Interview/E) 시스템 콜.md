@@ -6,7 +6,7 @@
 - 정확히 말하면 시스템 콜 또한 인터럽트의 일종이다.
 
 ## 동작 과정
-<p align="center"><img src="../images/os_system_call_process.jpg" width="600"></p>
+<p align="center"><img src="../images/os_system_call_process.png" width="600"></p>
 
 - 응용 프로그램에서 시스템 콜을 호출하면, 0x80 인터럽트가 발생한다.
   -  일반적으로는 API 형태로 Wrapped 되어 있기 때문에 우리는 의식하지 않고 사용함.
